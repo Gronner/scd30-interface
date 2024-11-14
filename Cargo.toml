@@ -1,0 +1,27 @@
+[package]
+authors = ["Felix 'Gronner' Bräunling <gronner@mailbox.org>"]
+categories = ["embedded", "no-std"]
+description = "An I2C driver for the SCD30 sensor in Rust."
+edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["sensor", "co2", "i2c"]
+name = "scd30-interface"
+readme = "README.md"
+repository = "https://github.com/Gronner/scd30-interface"
+rust-version = "1.78.0"
+version = "0.1.0"
+
+[dependencies]
+byteorder = { version = "1.5.0", default-features = false }
+defmt = { version = "0.3.8", optional = true }
+embedded-hal = "1.0.0"
+thiserror = { version = "2.0.3", default-features = false }
+
+[features]
+defmt = ["embedded-hal/defmt-03", "dep:defmt"]
+
+[dev-dependencies]
+embedded-hal-mock = "0.11.1"
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(tarpaulin_include)'] }
