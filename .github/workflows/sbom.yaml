@@ -1,0 +1,27 @@
+name: sbom
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gen:
+    name: Generate SBOM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Setup cyclondx
+        uses: taiki-e/cache-cargo-install-action@v2
+        with:
+          tool: cargo-cyclonedx
+      - name: Generate SBOM
+        run: cargo cyclonedx --all --all-features -f json
+      - name: Archive SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom-${{ github.sha }}
