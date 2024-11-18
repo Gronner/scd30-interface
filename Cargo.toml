@@ -9,7 +9,7 @@ name = "scd30-interface"
 readme = "README.md"
 repository = "https://github.com/Gronner/scd30-interface"
 rust-version = "1.78.0"
-version = "0.1.0"
+version = "1.0.0"
 
 [dependencies]
 byteorder = { version = "1.5.0", default-features = false }
