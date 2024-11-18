@@ -17,7 +17,7 @@ Features:
     * Configure automatic self-recalibration and forced recalibration value.
     * Read out data status, configuration and firmware version.
     * Execute soft reset.
-* Easy to integrate into projects using [embedded-hal](https://github.com/knurling-rs/defmt) crates.
+* Easy to integrate into projects using [embedded-hal](https://github.com/rust-embedded/embedded-hal) crates.
 * Optional [`defmt`](https://github.com/knurling-rs/defmt) support.
 
 ## License
