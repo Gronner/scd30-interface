@@ -7,6 +7,13 @@ on:
       - main
 
 jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Lint Git Commit Message
+        uses: wagoid/commitlint-github-action@v6
   checking:
     name: cargo check
     runs-on: ubuntu-latest

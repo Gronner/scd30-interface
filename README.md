@@ -22,6 +22,16 @@ Features:
 * Easy to integrate into projects using [embedded-hal](https://github.com/rust-embedded/embedded-hal) crates.
 * Optional [`defmt`](https://github.com/knurling-rs/defmt) support.
 
+## Contributing
+
+If you want to contribute open a Pull Request with your suggested changes and ensure that the
+integration pipeline runs.
+
+* Commits should adhere to the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/#specification)
+* The integration pipeline must pass.
+* Test coverage should not degrade.
+* At least one review is required
+
 ## License
 
 Licensed under either of
