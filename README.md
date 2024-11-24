@@ -4,6 +4,8 @@
 [![docs.rs](https://img.shields.io/docsrs/scd30-interface?logo=https%3A%2F%2Fdocs.rs%2Fscd30-interface%2F1.0.0%2Fscd30_interface%2F)](https://docs.rs/scd30-interface/1.0.0/scd30_interface/)
 [![Integration Pipeline](https://github.com/Gronner/scd30-interface/actions/workflows/integration.yaml/badge.svg)](https://github.com/Gronner/scd30-interface/actions/workflows/integration.yaml)
 [![codecov](https://codecov.io/gh/Gronner/scd30-interface/graph/badge.svg?token=NH6UCHBL19)](https://codecov.io/gh/Gronner/scd30-interface)
+![Crates.io MSRV](https://img.shields.io/crates/msrv/scd30-interface)
+
 
 A Rust I2C driver for [Sensirion's SCD30](https://sensirion.com/products/catalog/SCD30) CO2,
 temperature and humidity sensor module. This driver is based on the
