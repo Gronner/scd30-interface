@@ -7,7 +7,7 @@
 //! # Example
 //!
 //! ```ignore
-//! use scd30_interface::Scd30;
+//! use scd30_interface::blocking::Scd30;
 //! use scd30_interface::data::DataStatus;
 //! use esp_hal::i2c::master::{Config, I2c};
 //! use dfmt;
@@ -43,4 +43,6 @@ pub mod error;
 mod interface;
 mod util;
 
-pub use interface::Scd30;
+#[cfg(feature = "blocking")]
+/// Blocking interface for the SCD30
+pub use interface::blocking;
