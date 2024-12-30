@@ -14,10 +14,13 @@ version = "1.0.1"
 [dependencies]
 byteorder = { version = "1.5.0", default-features = false }
 defmt = { version = "0.3.8", optional = true }
+duplicate = { version = "2.0.0", default-features = false }
 embedded-hal = "1.0.0"
 thiserror = { version = "2.0.3", default-features = false }
 
 [features]
+default = ["blocking"]
+blocking = []
 defmt = ["embedded-hal/defmt-03", "dep:defmt"]
 
 [dev-dependencies]
