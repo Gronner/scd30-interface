@@ -46,3 +46,7 @@ mod util;
 #[cfg(feature = "blocking")]
 /// Blocking interface for the SCD30
 pub use interface::blocking;
+
+#[cfg(feature = "async")]
+/// Async interface for the SCD30
+pub use interface::asynch;
