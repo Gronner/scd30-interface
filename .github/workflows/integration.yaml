@@ -25,7 +25,7 @@ jobs:
         with:
           toolchain: stable
       - name: Check Rust Errors
-        run: cargo check
+        run: cargo check --features "blocking async"
   formatting:
     name: cargo fmt
     runs-on: ubuntu-latest
@@ -49,7 +49,7 @@ jobs:
         with:
           components: clippy
       - name: Check Code Formatting
-        run: cargo clippy
+        run: cargo clippy --features "blocking async"
   auditing:
     name: cargo audit
     runs-on: ubuntu-latest
@@ -71,7 +71,7 @@ jobs:
       - name: Setup toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Build library
-        run: cargo build
+        run: cargo build --features "blocking async"
   unittest:
     name: unit tests
     needs: building
@@ -83,7 +83,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Execute unit tests
-        run: cargo tarpaulin --fail-under 95 --out xml
+        run: cargo tarpaulin --fail-under 95 --out xml --features "blocking async"
       - name: Generate coverage report
         uses: codecov/codecov-action@v4
         with:
