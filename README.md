@@ -19,7 +19,9 @@ Features:
     * Configure automatic self-recalibration and forced recalibration value.
     * Read out data status, configuration and firmware version.
     * Execute soft reset.
-* Easy to integrate into projects using [embedded-hal](https://github.com/rust-embedded/embedded-hal) crates.
+* All functions are also available as `async` interfaces with the `async` feature
+* Easy to integrate into projects using [embedded-hal](https://github.com/rust-embedded/embedded-hal)
+  and [embedded-hal-async](https://crates.io/crates/embedded-hal-async) crates.
 * Optional [`defmt`](https://github.com/knurling-rs/defmt) support.
 
 ## Contributing
