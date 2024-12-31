@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0](https://github.com/Gronner/scd30-interface/compare/v1.0.1...v2.0.0) - 2024-12-31
+
+### Added
+
+- *(api)* add `async` api for sensor
+
+### Other
+
+- *(deps)* update dependencies
+- include async api in ci checks
+- *(api)* [**breaking**] encapsulate blocking interface
+
 ## [1.0.1](https://github.com/Gronner/scd30-interface/compare/v1.0.0...v1.0.1) - 2024-11-24
 
 ### Other
