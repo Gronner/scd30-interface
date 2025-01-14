@@ -7,7 +7,7 @@ on:
 
 jobs:
   gen:
-    name: Generate SBOM
+    name: Generate and Upload SBOM
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -25,3 +25,11 @@ jobs:
         with:
           name: sbom
           path: sbom-${{ github.sha }}.json
+      - name: Upload SBOM
+        uses: DependencyTrack/gh-upload-sbom@v3
+        with:
+          serverHostname: 'back.vulns.gronner.dev'
+          apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
+          project: 'b3611ecc-5df1-4496-9c0a-7d497bea2270'
+          bomFilename: sbom-${{ github.sha }}.json
+
