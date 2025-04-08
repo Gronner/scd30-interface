@@ -27,7 +27,7 @@ defmt = ["embedded-hal-async/defmt-03", "embedded-hal/defmt-03", "dep:defmt"]
 
 [dev-dependencies]
 embedded-hal-mock = { version = "0.11.1", features = ["embedded-hal-async"] }
-tokio = { version = "1.42.0", features = ["macros", "rt"] }
+tokio = { version = "1.43.1", features = ["macros", "rt"] }
 
 [lints.rust]
 unexpected_cfgs = { level = "allow", check-cfg = ['cfg(tarpaulin_include)'] }
