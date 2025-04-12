@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1](https://github.com/Gronner/scd30-interface/compare/v2.0.0...v2.0.1) - 2025-04-12
+
+### Other
+
+- *(deps)* bump tokio from 1.42.0 to 1.43.1
+- add automated sbom upload
+
 ## [2.0.0](https://github.com/Gronner/scd30-interface/compare/v1.0.1...v2.0.0) - 2024-12-31
 
 ### Added
