@@ -1,9 +1,12 @@
 name: sbom
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
+  release:
+    types: [published]
 
 jobs:
   gen:
@@ -11,25 +14,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+      - name: Set version
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            echo "VERSION=${{ github.event.release.tag_name }}" >> "$GITHUB_ENV"
+          else
+            echo "VERSION=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+          fi
       - name: Setup toolchain
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+        uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f #v2.0.0
       - name: Setup cyclondx
-        uses: taiki-e/cache-cargo-install-action@v2
+        uses: taiki-e/cache-cargo-install-action@9ee83daaa7b96a6fab930949ecf1122bba04a389 #v3.0.8
         with:
-          tool: cargo-cyclonedx
+          tool: cargo-cyclonedx@0.5.9
       - name: Generate SBOM
-        run: cargo cyclonedx --all --all-features -f json --override-filename sbom-${{ github.sha }}
+        run: cargo cyclonedx --all --all-features -f json --override-filename "sbom-${VERSION}"
       - name: Archive SBOM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7.0.1
         with:
-          name: sbom
-          path: sbom-${{ github.sha }}.json
-      - name: Upload SBOM
-        uses: DependencyTrack/gh-upload-sbom@v3
+          name: sbom-${{ env.VERSION }}
+          path: sbom-${{ env.VERSION }}.json
+      - name: Upload Dev SBOM
+        uses: DependencyTrack/gh-upload-sbom@d8935b70f527d6aca6bbef5ab02db3933c9a8626 #v4.2.0
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         with:
-          serverHostname: 'back.vulns.gronner.dev'
-          apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
-          project: 'b3611ecc-5df1-4496-9c0a-7d497bea2270'
-          bomFilename: sbom-${{ github.sha }}.json
+          server-hostname: 'back.vulns.gronner.dev'
+          api-key: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
+          project: '274a1b33-1113-4050-81a7-6f904706f0aa'
+          project-version: ${{ env.VERSION }}
+          bom-filename: sbom-${{ env.VERSION }}.json
+      - name: Upload Release SBOM
+        uses: DependencyTrack/gh-upload-sbom@d8935b70f527d6aca6bbef5ab02db3933c9a8626 #v4.2.0
+        if: github.event_name == 'release'
+        with:
+          server-hostname: 'back.vulns.gronner.dev'
+          api-key: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
+          parent: 'e4e9e706-3f9a-4400-bf76-f2831d355e05'
+          project-version: ${{ env.VERSION }}
+          auto-create: true
+          is-latest: true
+          bom-filename: sbom-${{ env.VERSION }}.json
 
